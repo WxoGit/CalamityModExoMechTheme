@@ -11,5 +11,6 @@ and is not affiliated with the official Calamity Mod.
 https://www.youtube.com/watch?v=7wPxSMzQHh4
 
 Developed By [c/b700fa:WxoKl_]
+Source Code: https://github.com/WxoGit/CalamityModExoMechTheme
 
 Music Box Sprites By [c/104fad:Sidetracked]
