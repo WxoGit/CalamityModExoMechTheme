@@ -1,0 +1,12 @@
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\tModLoader.targets" />
+  <PropertyGroup>
+    <AssemblyName>CalamityModExoMechTheme</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Remove="Localization\Mods.CalamityModExoMechTheme.MusicDisplay.hjson" />
+  </ItemGroup>
+</Project>

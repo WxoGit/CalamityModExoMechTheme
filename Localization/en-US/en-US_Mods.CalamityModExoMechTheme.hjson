@@ -1,0 +1,24 @@
+Tiles.DeiMachinaeMBTile.MapEntry: Music Box (Dei Machinae)
+
+Items: {
+	DeiMachinaeMB: {
+		DisplayName: Music Box (Dei Machinae)
+		Tooltip: Plays 'Dei Machinae' by Sidetracked
+	}
+}
+
+Configs: {
+	ExoConfig: {
+		UseAltExoTheme: {
+			Tooltip: Use Dei Machinae During ExoMechs Fight?
+			Label: Alternative Exo Mech Theme
+		}
+
+		DisplayName: Exo Config
+
+		UseZenithFabrications: {
+			Tooltip: (Only works when Infernum and Infernum Music are installed and activated, and Infernum difficulty is on.) Use Zenith Fabrications after killing the first Exo Mech?
+			Label: Use Zenith Fabrications
+		}
+	}
+}

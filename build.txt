@@ -1,0 +1,4 @@
+author = WxoKl_
+displayName = Calamity Mod ExoMechs Theme Change
+version = 1.7.0
+sortAfter = CalamityMod,
