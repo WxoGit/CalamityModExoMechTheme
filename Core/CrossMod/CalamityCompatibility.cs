@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Reflection;
 using Terraria.ModLoader;
 
@@ -11,6 +10,28 @@ namespace CalamityModExoMechTheme.Core.CrossMod
         /// Evil mod
         /// </summary>
         public static Mod CalamityMod { get; set; }
+
+        #region Mechs types
+        public static int ThanatosHeadType { get; private set; }
+        public static int ThanatosBody1Type { get; private set; }
+        public static int ThanatosBody2Type { get; private set; }
+        public static int ThanatosTailType { get; private set; }
+        public static int AresBodyType { get; private set; }
+        public static int ApolloType { get; private set; }
+        public static int ArtemisType { get; private set; }
+
+        public static readonly int[] ExoMechNpcTypes =
+        [
+            ThanatosHeadType,
+            ThanatosBody1Type,
+            ThanatosBody2Type,
+            ThanatosTailType,
+            AresBodyType,
+            ApolloType,
+            ArtemisType
+        ];
+
+        #endregion
 
         public static bool BossRushActive
         {
@@ -38,8 +59,18 @@ namespace CalamityModExoMechTheme.Core.CrossMod
 
         public override void Load()
         {
-            ModLoader.TryGetMod("CalamityMod", out Mod clam);
-            CalamityMod = clam;
+            if (ModLoader.TryGetMod("CalamityMod", out Mod clam))
+            {
+                CalamityMod = clam;
+
+                if (CalamityMod.TryFind("ThanatosHead", out ModNPC thanatosHead)) ThanatosHeadType = thanatosHead.Type;
+                if (CalamityMod.TryFind("ThanatosBody1", out ModNPC thanatosBody1)) ThanatosBody1Type = thanatosBody1.Type;
+                if (CalamityMod.TryFind("ThanatosBody2", out ModNPC thanatosBody2)) ThanatosBody2Type = thanatosBody2.Type;
+                if (CalamityMod.TryFind("ThanatosTail", out ModNPC thanatosTail)) ThanatosTailType = thanatosTail.Type;
+                if (CalamityMod.TryFind("AresBody", out ModNPC aresBody)) AresBodyType = aresBody.Type;
+                if (CalamityMod.TryFind("Apollo", out ModNPC apollo)) ApolloType = apollo.Type;
+                if (CalamityMod.TryFind("Artemis", out ModNPC artemis)) ArtemisType = artemis.Type;
+            }
         }
 
         public override void Unload()

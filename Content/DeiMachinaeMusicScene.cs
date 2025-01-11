@@ -16,15 +16,31 @@ namespace CalamityModExoMechTheme.Content
             if (CalamityMod is null)
                 return false;
 
-            bool isThanatosHeadNearby = NPC.AnyNPCs(CalamityMod.Find<ModNPC>("ThanatosHead").Type) && Main.npc[NPC.FindFirstNPC(CalamityMod.Find<ModNPC>("ThanatosHead").Type)].Distance(player.Center) <= 8500f;
-            bool isThanatosBody1Nearby = NPC.AnyNPCs(CalamityMod.Find<ModNPC>("ThanatosBody1").Type) && Main.npc[NPC.FindFirstNPC(CalamityMod.Find<ModNPC>("ThanatosBody1").Type)].Distance(player.Center) <= 8500f;
-            bool isThanatosBody2Nearby = NPC.AnyNPCs(CalamityMod.Find<ModNPC>("ThanatosBody2").Type) && Main.npc[NPC.FindFirstNPC(CalamityMod.Find<ModNPC>("ThanatosBody2").Type)].Distance(player.Center) <= 8500f;
-            bool isThanatosTailNearby = NPC.AnyNPCs(CalamityMod.Find<ModNPC>("ThanatosTail").Type) && Main.npc[NPC.FindFirstNPC(CalamityMod.Find<ModNPC>("ThanatosTail").Type)].Distance(player.Center) <= 8500f;
-            bool isAresBodyNearby = NPC.AnyNPCs(CalamityMod.Find<ModNPC>("AresBody").Type) && Main.npc[NPC.FindFirstNPC(CalamityMod.Find<ModNPC>("AresBody").Type)].Distance(player.Center) <= 8500f;
-            bool isApolloNearby = NPC.AnyNPCs(CalamityMod.Find<ModNPC>("Apollo").Type) && Main.npc[NPC.FindFirstNPC(CalamityMod.Find<ModNPC>("Apollo").Type)].Distance(player.Center) <= 8500f;
-            bool isArtemisNearby = NPC.AnyNPCs(CalamityMod.Find<ModNPC>("Artemis").Type) && Main.npc[NPC.FindFirstNPC(CalamityMod.Find<ModNPC>("Artemis").Type)].Distance(player.Center) <= 8500f;
+            // Check if any of the Exos is nearby
+            bool isAnyBossNearby = IsNpcNearby(ThanatosHeadType, player, 8500f) || IsNpcNearby(ThanatosBody1Type, player, 8500f) || IsNpcNearby(ThanatosBody2Type, player, 8500f) ||
+                       IsNpcNearby(ThanatosTailType, player, 8500f) || IsNpcNearby(AresBodyType, player, 8500f) || IsNpcNearby(ApolloType, player, 8500f) || IsNpcNearby(ArtemisType, player, 8500f);
 
-            return !BossRushActive && !InfernumCompatibility.SecondThemeShouldPlay && (isThanatosHeadNearby || isThanatosBody1Nearby || isThanatosBody2Nearby || isThanatosTailNearby || isAresBodyNearby || isApolloNearby || isArtemisNearby) && ExoConfig.Instance.UseAltExoTheme;
+            return !BossRushActive && !InfernumCompatibility.SecondThemeShouldPlay && isAnyBossNearby || EternityAndWoTMCompatibility.IsDraedonCutsceneActive() && ExoConfig.Instance.UseAltExoTheme;
+        }
+
+        /// <summary>
+        /// Determines if an NPC of a given type is near the player within a specified range.
+        /// </summary>
+        /// <param name="npcType">The type ID of the NPC to check.</param>
+        /// <param name="player">The player to measure distance from.</param>
+        /// <param name="range">The maximum range within which the NPC is considered "nearby".</param>
+        /// <returns>True if the NPC is within the specified range; otherwise, false.</returns>
+        private static bool IsNpcNearby(int npcType, Player player, float range)
+        {
+            if (npcType <= 0)
+                return false;
+            int npcIndex = NPC.FindFirstNPC(npcType);
+            if (npcIndex != -1)
+            {
+                NPC npc = Main.npc[npcIndex];
+                return npc.active && npc.Distance(player.Center) <= range;
+            }
+            return false;
         }
     }
 }
