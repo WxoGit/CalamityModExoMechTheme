@@ -16,17 +16,18 @@ namespace CalamityModExoMechTheme.Core.CrossMod
             ModLoader.TryGetMod("WoTM", out Mod mechsMod);
             WoTM = mechsMod;
 
-            // Sooo idk in what version of FargowiltasCrossmod will have the exos, so
-            // as a fix the mod won't load fargo souls if draedon rework does not exist.
+            // Return if FargoCrossMod is not enabled
             ModLoader.TryGetMod("FargowiltasCrossmod", out Mod fargoCross);
             if (fargoCross is null)
                 return;
 
-            // Get DraedonEternity type
+            // Sooo idk in what version of FargowiltasCrossmod will have the exos, so
+            // as a fix the mod won't load fargo souls if draedon rework does not exist.
             Type draedonEternityType = fargoCross.Code.GetType("FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Draedon.DraedonEternity");
             if (draedonEternityType is null)
                 return;
 
+            // If the mod has the rework load the mod reference so it can be used
             ModLoader.TryGetMod("FargowiltasSouls", out Mod fargo);
             FargoSouls = fargo;
         }
