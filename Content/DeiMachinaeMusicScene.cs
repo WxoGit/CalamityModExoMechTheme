@@ -20,7 +20,7 @@ namespace CalamityModExoMechTheme.Content
             bool isAnyBossNearby = IsNpcNearby(ThanatosHeadType, player, 8500f) || IsNpcNearby(ThanatosBody1Type, player, 8500f) || IsNpcNearby(ThanatosBody2Type, player, 8500f) ||
                        IsNpcNearby(ThanatosTailType, player, 8500f) || IsNpcNearby(AresBodyType, player, 8500f) || IsNpcNearby(ApolloType, player, 8500f) || IsNpcNearby(ArtemisType, player, 8500f);
 
-            return !BossRushActive && !InfernumCompatibility.SecondThemeShouldPlay && isAnyBossNearby || EternityAndWoTMCompatibility.IsDraedonCutsceneActive() && ExoConfig.Instance.UseAltExoTheme;
+            return (!BossRushActive && !InfernumCompatibility.SecondThemeShouldPlay && isAnyBossNearby || EternityAndWoTMCompatibility.IsDraedonCutsceneActive()) && ExoConfig.Instance.UseAltExoTheme;
         }
 
         /// <summary>
